@@ -10,7 +10,7 @@ module.exports = (source, options = { escape: false, noBr: false }) => {
     if(clip.length === 1) {
       output.push(clip[0])
     } else {
-      let text = clip[0]
+      let text = escapeText(clip[0])
       const modifiers = clip[1]
 
       modifiers.forEach(mod => {
@@ -47,7 +47,7 @@ module.exports = (source, options = { escape: false, noBr: false }) => {
   }
   
   if(!options.noBr) {
-    joinedOutput = joinedOutput.replace(/\n/g, "<br>")
+    joinedOutput = joinedOutput
   }
   
   return joinedOutput
