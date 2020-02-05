@@ -41,8 +41,6 @@ module.exports = (source, options = { escape: false, noBr: false }) => {
   })
 
   let joinedOutput = output.join("")
-  
-  console.log(joinedOutput)
 
   if(options.escape) {
     joinedOutput = escapeText(joinedOutput)
