@@ -1,6 +1,8 @@
 /* Turns an array of text, returned by Notion's API, into HTML */
 
-module.exports = (source) => {
+const escapeText = require("../helpers/escape")
+
+module.exports = (source, options = { escape: false, noBr: false }) => {
   const output = []
 
   source.forEach(clip => {
@@ -37,6 +39,18 @@ module.exports = (source) => {
     }
 
   })
+
+  let joinedOutput = output.join("")
   
-  return output.join("").replace(/\n/g, "<br>")
+  console.log(joinedOutput)
+
+  if(options.escape) {
+    joinedOutput = escapeText(joinedOutput)
+  }
+  
+  if(!options.noBr) {
+    joinedOutput = joinedOutput.replace(/\n/g, "<br>")
+  }
+  
+  return joinedOutput
 }
