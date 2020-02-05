@@ -22,22 +22,22 @@ The only query parameter is `?id=<notion-page-id>`, which can be obtained from t
 
 Most, but not all, of the common Notion blocks are supported at the moment:
 
-[x] Text
-[x] To-do List
-[x] Heading 1
-[x] Heading 2
-[x] Heading 3
-[x] Bulleted List
-[x] Numbered List
-[ ] Toggle List
-[x] Quote
-[x] Divider
-[ ] Link To Page
-[x] Callout
-
-[ ] Image
-[ ] Web Bookmark
-[ ] Video
-[ ] Audio
-[x] Code
-[ ] File
+- [x] Text
+- [x] To-do List
+- [x] Heading 1
+- [x] Heading 2
+- [x] Heading 3
+- [x] Bulleted List
+- [x] Numbered List
+- [ ] Toggle List
+- [x] Quote
+- [x] Divider
+- [ ] Link To Page
+- [x] Callout
+- 
+- [ ] Image
+- [ ] Web Bookmark
+- [ ] Video
+- [ ] Audio
+- [x] Code
+- [ ] File
