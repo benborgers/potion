@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
 
       if(schemaDefinition.type === "checkbox") {
         value = value === "Yes" ? true : false
-      } else if(schemaDefinition.type === "date") {
+      } else if(value && schemaDefinition.type === "date") {
         value = page.value.properties[s][0][1][0][1]
       }
 
