@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "https://github.com/benborgers/potion" }
+  ]
+}
