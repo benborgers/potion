@@ -4,7 +4,7 @@ Potion is a reverse-engineered API for [Notion](https://notion.so). Write your c
 
 ## Endpoints
 
-*<notion-page-id> refers to the 32 character alphanumeric string in the URL of a Notion doc (but not a query parameter, so not the string after ?v=).*
+*`<notion-page-id>` refers to the 32 character alphanumeric string in the URL of a Notion doc (but not a query parameter, so not the string after `?v=`).*
 
 ### /api/table
 
