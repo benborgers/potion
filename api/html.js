@@ -106,5 +106,7 @@ module.exports = async (req, res) => {
                         .replace(/<\/ol><ol>/g, "")
                         .replace(/<\/ul><ul>/g, "")
                         .replace(/<\/div><div class="checklist">/g, "")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
   res.send(cleanedHtml)
 }
