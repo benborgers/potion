@@ -34,7 +34,7 @@ Most, but not all, of the common Notion blocks are supported at the moment:
 - [x] Divider
 - [ ] Link To Page
 - [x] Callout
-- 
+
 - [ ] Image
 - [ ] Web Bookmark
 - [ ] Video
