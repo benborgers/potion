@@ -91,6 +91,8 @@ module.exports = async (req, res) => {
       html.push(`<blockquote>${textArrayToHtml(block.properties.title)}</blockquote>`)
     } else if(["divider"].includes(type)) {
       html.push(`<hr>`)
+    } else if(["image"].includes(type)) {
+      html.push(`<img src="https://www.notion.so/image/${encodeURIComponent(block.format.display_source)}">`)
     } else {
       /* Catch blocks without handler method */
       console.log(`Unhandled block type "${block.type}"`, block)
