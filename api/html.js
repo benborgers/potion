@@ -50,8 +50,6 @@ module.exports = async (req, res) => {
 
   const html = []
 
-  let prevBlock = {}
-
   contents.forEach(block => {
     const type = block.type
 
@@ -97,8 +95,6 @@ module.exports = async (req, res) => {
       /* Catch blocks without handler method */
       console.log(`Unhandled block type "${block.type}"`, block)
     }
-
-    prevBlock = block
   })
 
   const joinedHtml = html.join("")
