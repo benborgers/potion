@@ -38,8 +38,5 @@ module.exports = (source) => {
 
   })
   
-  return output.join("")
-                .replace(/\n/g, "<br>")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
+  return output.join("").replace(/\n/g, "<br>")
 }
