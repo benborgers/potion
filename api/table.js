@@ -58,14 +58,16 @@ module.exports = async (req, res) => {
     const fields = {}
 
     for(const s in schema) {
-      const schemaItem = schema[s]
+      const schemaDefinition = schema[s]
       let value = page.value.properties[s] && page.value.properties[s][0][0]
 
-      if(schemaItem.type === "checkbox") {
+      if(schemaDefinition.type === "checkbox") {
         value = value === "Yes" ? true : false
+      } else if(schemaDefinition.type === "date") {
+        value = page.value.properties[s][0][1][0][1]
       }
 
-      fields[schemaItem.name] = value || undefined
+      fields[schemaDefinition.name] = value || undefined
     }
 
     output.push({
