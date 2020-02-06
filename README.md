@@ -42,3 +42,9 @@ Most, but not all, of the common Notion blocks are supported at the moment:
 - [ ] Audio
 - [x] Code
 - [ ] File
+
+## Development and Deployment
+
+This project is built to be deployed on [ZEIT Now](https://zeit.co/home). 
+
+For local development, install [Now's CLI](https://zeit.co/download) and run `now dev`. 
