@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
 
   if(!overview.results[0].value) {
     return res.json({
-      error: "invalid Notion page ID"
+      error: "could not read Notion page with this ID"
     })
   }
 
