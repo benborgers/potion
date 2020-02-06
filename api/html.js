@@ -31,6 +31,12 @@ module.exports = async (req, res) => {
 
   const contentIds = overview.results[0].value.content
 
+  if(!contentIds) {
+    return res.json({
+      error: "cannot get content for this doc"
+    })
+  }
+
   const contents = []
 
   const chunk = await call("loadPageChunk", {
