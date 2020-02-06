@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
 
   contentIds.forEach(id => {
     const block = chunk.recordMap.block[id]
-    contents.push(block.value)
+    if(block) contents.push(block.value)
   })
 
   const html = []
@@ -67,6 +67,11 @@ module.exports = async (req, res) => {
         sub_sub_header: "h3",
         text: "p"
       }[type]
+
+      if(!block.properties) {
+        // This is an empty text block. 
+        return
+      }
 
       html.push(`<${el}>${textArrayToHtml(block.properties.title)}</${el}>`)
     } else if(["numbered_list", "bulleted_list"].includes(type)) {
