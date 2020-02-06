@@ -84,7 +84,7 @@ module.exports = async (req, res) => {
     } else if(["code"].includes(type)) {
       /* Full code blocks with language */
       const language = block.properties.language[0][0].toLowerCase()
-      const text = block.properties.title
+      const text = block.properties.title || [[""]]
       html.push(`<pre><code class="language-${language}">${textArrayToHtml(text, { escape: true, noBr: true})}</code></pre>`)
     } else if(["callout"].includes(type)) {
       /* Callout formatted with emoji from emojicdn.elk.sh */
