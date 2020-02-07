@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
 
   if(!id) {
     return res.json({
-      error: "no Notion page ID provided as `id` parameter"
+      error: "no Notion doc ID provided as `id` parameter"
     })
   }
 
@@ -24,13 +24,13 @@ module.exports = async (req, res) => {
 
   if(!pageData.results[0].value) {
     return res.json({
-      error: "invalid Notion page ID"
+      error: "invalid Notion doc ID, or public access is not enabled on this doc"
     })
   }
 
   if(pageData.results[0].value.type !== "collection_view_page") {
     return res.json({
-      error: "this Notion page is not a full-page collection"
+      error: "this Notion doc is not a full-page collection"
     })
   }
 

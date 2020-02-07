@@ -1,4 +1,4 @@
-/* Returns reconstructed HTML for a given Notion page */
+/* Returns reconstructed HTML for a given Notion doc */
 
 const call = require("../notion/call")
 const normalizeId = require("../notion/normalizeId")
@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 
   if(!id) {
     return res.json({
-      error: "no Notion page ID provided as `id` parameter"
+      error: "no Notion doc ID provided as `id` parameter"
     })
   }
 
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
 
   if(!overview.results[0].value) {
     return res.json({
-      error: "could not read Notion page with this ID"
+      error: "could not read Notion doc with this ID"
     })
   }
 
