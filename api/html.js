@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
 
   if(!overview.results[0].value) {
     return res.json({
-      error: "could not read Notion doc with this ID"
+      error: "could not read Notion doc with this ID - make sure public access is enabled"
     })
   }
 
