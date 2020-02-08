@@ -97,7 +97,7 @@ module.exports = async (req, res) => {
       const color = block.format.block_color.split("_")[0]
       const isBackground = block.format.block_color.split("_").length > 1
       const text = block.properties.title
-      html.push(`<div class="callout"><img src="https://emojicdn.elk.sh/${emoji}" class="${isBackground ? "background" : "color"}-${color}"><p>${textArrayToHtml(text)}</p></div>`)
+      html.push(`<div class="callout${isBackground ? " background" : " color"}-${color}"><img src="https://emojicdn.elk.sh/${emoji}"><p>${textArrayToHtml(text)}</p></div>`)
     } else if(["quote"].includes(type)) {
       html.push(`<blockquote>${textArrayToHtml(block.properties.title)}</blockquote>`)
     } else if(["divider"].includes(type)) {
