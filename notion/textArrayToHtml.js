@@ -2,15 +2,15 @@
 
 const escapeText = require("../helpers/escape")
 
-module.exports = (source, options = { escape: false, noBr: false }) => {
+module.exports = (source) => {
   const output = []
 
   source.forEach(clip => {
+    let text = escapeText(clip[0])
 
     if(clip.length === 1) {
-      output.push(clip[0])
+      output.push(text)
     } else {
-      let text = escapeText(clip[0])
       const modifiers = clip[1]
 
       modifiers.forEach(mod => {
@@ -39,16 +39,6 @@ module.exports = (source, options = { escape: false, noBr: false }) => {
     }
 
   })
-
-  let joinedOutput = output.join("")
-
-  if(options.escape) {
-    joinedOutput = escapeText(joinedOutput)
-  }
   
-  if(!options.noBr) {
-    joinedOutput = joinedOutput
-  }
-  
-  return joinedOutput
+  return output.join("").replace(/\n/g, "<br>")
 }
