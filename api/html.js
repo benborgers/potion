@@ -116,6 +116,10 @@ module.exports = async (req, res) => {
     } else if(["image"].includes(type)) {
       html.push(`<img src="https://www.notion.so/image/${encodeURIComponent(block.format.display_source)}">`)
     } else if(["equation"].includes(type)) {
+      if(!block.properties) {
+        // Equation block is empty
+        return 
+      }
       pageHasEquations = true
       const equation = block.properties.title[0][0]
       const equationHtml = katex.renderToString(equation, { throwOnError: false })
