@@ -42,6 +42,7 @@ Most, but not all, of the common Notion blocks are supported at the moment:
 - [ ] Audio
 - [x] Code
 - [ ] File
+- [x] Math Equation
 
 ## Development and Deployment
 
