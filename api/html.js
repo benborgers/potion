@@ -90,7 +90,14 @@ module.exports = async (req, res) => {
       /* Full code blocks with language */
       const language = block.properties.language[0][0].toLowerCase()
       const text = block.properties.title || [[""]]
-      html.push(`<pre><code class="language-${language}">${textArrayToHtml(text, { escape: true, noBr: true})}</code></pre>`)
+
+      // Inject unescaped HTML if code block's language is set to LiveScript
+      const showLive = language === "livescript"
+      if(showLive) {
+        html.push(text.map(clip => clip[0]).join("")) // Ignore styling, just take the text
+      } else {
+        html.push(`<pre><code class="language-${language}">${textArrayToHtml(text)}</code></pre>`)
+      }
     } else if(["callout"].includes(type)) {
       /* Callout formatted with emoji from emojicdn.elk.sh */
       const emoji = block.format.page_icon
