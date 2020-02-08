@@ -56,6 +56,8 @@ module.exports = async (req, res) => {
 
   const html = []
 
+  let pageHasEquations = false
+
   contents.forEach(block => {
     const type = block.type
 
@@ -111,11 +113,60 @@ module.exports = async (req, res) => {
       html.push(`<hr>`)
     } else if(["image"].includes(type)) {
       html.push(`<img src="https://www.notion.so/image/${encodeURIComponent(block.format.display_source)}">`)
+    } else if(["equation"].includes(type)) {
+      pageHasEquations = true
+      const equation = block.properties.title[0][0]
+      html.push(`<div class="equation">${equation}</div>`)
     } else {
       /* Catch blocks without handler method */
       console.log(`Unhandled block type "${block.type}"`, block)
     }
   })
+
+  if(pageHasEquations) {
+    // Adds JavaScript for rendering equations
+    html.push(`<script>
+      (() => {
+        const renderEquations = () => {
+          document.querySelectorAll(".equation").forEach(el => {
+            const equation = el.innerText;
+
+            if(!document.doctype) {
+              el.classList.add("error");
+              el.innerText = "Could not render equation because document does not have doctype declared.";
+              return;
+            };
+
+            katex.render(equation, el);
+          });
+        };
+
+        const setup = () => {
+          renderEquations();
+          const config = { childList: true, subtree: true };
+          const observer = new MutationObserver(renderEquations);
+          observer.observe(document.body, config);
+        };
+
+        const head = document.head;
+        const link = document.createElement("link");
+        link.rel="stylesheet";
+        link.href = "https://unpkg.com/katex@0.11.1/dist/katex.min.css";
+        head.appendChild(link);
+
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/katex@0.11.1/dist/katex.min.js";
+        script.onload = setup;
+        head.appendChild(script);
+      })()
+    </script>`
+      .replace(/\n/g, "")
+      .replace(/;\s+/g, ";")
+      .replace(/{\s+/g, "{")
+      .replace(/<script>\s+/, "<script>")
+      .replace(/\s+<\/script>/, "</script>")
+    )
+  }
 
   const joinedHtml = html.join("")
   const cleanedHtml = joinedHtml
