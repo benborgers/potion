@@ -118,7 +118,7 @@ module.exports = async (req, res) => {
     } else if(["equation"].includes(type)) {
       pageHasEquations = true
       const equation = block.properties.title[0][0]
-      const equationHtml = katex.renderToString(equation)
+      const equationHtml = katex.renderToString(equation, { throwOnError: false })
       html.push(`<div class="equation">${equationHtml}</div>`)
     } else {
       /* Catch blocks without handler method */
