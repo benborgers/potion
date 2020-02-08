@@ -3,6 +3,7 @@
   "author": "Ben Borgers <borgersbenjamin@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "katex": "^0.11.1",
     "node-fetch": "^2.6.0"
   }
 }

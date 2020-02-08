@@ -1,5 +1,7 @@
 /* Returns reconstructed HTML for a given Notion doc */
 
+const katex = require("katex")
+
 const call = require("../notion/call")
 const normalizeId = require("../notion/normalizeId")
 const textArrayToHtml = require("../notion/textArrayToHtml.js")
@@ -116,7 +118,8 @@ module.exports = async (req, res) => {
     } else if(["equation"].includes(type)) {
       pageHasEquations = true
       const equation = block.properties.title[0][0]
-      html.push(`<div class="equation">${equation}</div>`)
+      const equationHtml = katex.renderToString(equation)
+      html.push(`<div class="equation">${equationHtml}</div>`)
     } else {
       /* Catch blocks without handler method */
       console.log(`Unhandled block type "${block.type}"`, block)
@@ -124,48 +127,7 @@ module.exports = async (req, res) => {
   })
 
   if(pageHasEquations) {
-    // Adds JavaScript for rendering equations
-    html.push(`<script>
-      (() => {
-        const renderEquations = () => {
-          document.querySelectorAll(".equation").forEach(el => {
-            const equation = el.innerText;
-
-            if(!document.doctype) {
-              el.classList.add("error");
-              el.innerText = "Could not render equation because document does not have doctype declared.";
-              return;
-            };
-
-            katex.render(equation, el);
-          });
-        };
-
-        const setup = () => {
-          renderEquations();
-          const config = { childList: true, subtree: true };
-          const observer = new MutationObserver(renderEquations);
-          observer.observe(document.body, config);
-        };
-
-        const head = document.head;
-        const link = document.createElement("link");
-        link.rel="stylesheet";
-        link.href = "https://unpkg.com/katex@0.11.1/dist/katex.min.css";
-        head.appendChild(link);
-
-        const script = document.createElement("script");
-        script.src = "https://unpkg.com/katex@0.11.1/dist/katex.min.js";
-        script.onload = setup;
-        head.appendChild(script);
-      })()
-    </script>`
-      .replace(/\n/g, "")
-      .replace(/;\s+/g, ";")
-      .replace(/{\s+/g, "{")
-      .replace(/<script>\s+/, "<script>")
-      .replace(/\s+<\/script>/, "</script>")
-    )
+    html.push(`<link rel="stylesheet" href="https://unpkg.com/katex@0.11.1/dist/katex.min.css">`)
   }
 
   const joinedHtml = html.join("")
