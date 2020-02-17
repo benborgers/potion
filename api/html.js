@@ -92,7 +92,7 @@ module.exports = async (req, res) => {
       html.push(`<div class="checklist"><input type="checkbox" disabled${checked && " checked"}>${textArrayToHtml(block.properties.title)}</input></div>`)
     } else if(["code"].includes(type)) {
       /* Full code blocks with language */
-      const language = block.properties.language[0][0].toLowerCase()
+      const language = block.properties.language[0][0].toLowerCase().replace(/ /g, "")
       const text = block.properties.title || [[""]]
 
       // Inject unescaped HTML if code block's language is set to LiveScript
