@@ -3,6 +3,8 @@
 const call = require("../notion/call")
 const normalizeId = require("../notion/normalizeId")
 
+const textArrayToHtml = require("../notion/textArrayToHtml.js")
+
 module.exports = async (req, res) => {
   const { id:queryId } = req.query
   const id = normalizeId(queryId)
@@ -59,12 +61,15 @@ module.exports = async (req, res) => {
 
     for(const s in schema) {
       const schemaDefinition = schema[s]
+      const type = schemaDefinition.type
       let value = page.value.properties[s] && page.value.properties[s][0][0]
 
-      if(schemaDefinition.type === "checkbox") {
+      if(type === "checkbox") {
         value = value === "Yes" ? true : false
-      } else if(value && schemaDefinition.type === "date") {
+      } else if(value && type === "date") {
         value = page.value.properties[s][0][1][0][1]
+      } else if(value && type === "text") {
+        value = textArrayToHtml(page.value.properties[s])
       }
 
       fields[schemaDefinition.name] = value || undefined
