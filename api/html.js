@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
 
   if(!contentIds) {
     return res.json({
-      error: "cannot get content for this doc"
+      error: "this doc has no content"
     })
   }
 
