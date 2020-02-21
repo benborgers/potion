@@ -100,7 +100,7 @@ module.exports = async (req, res) => {
       if(showLive) {
         html.push(text.map(clip => clip[0]).join("")) // Ignore styling, just take the text
       } else {
-        html.push(`<pre><code class="language-${language}">${textArrayToHtml(text)}</code></pre>`)
+        html.push(`<pre><code class="language-${language}">${textArrayToHtml(text, { br: false })}</code></pre>`)
       }
     } else if(["callout"].includes(type)) {
       /* Callout formatted with emoji from emojicdn.elk.sh */

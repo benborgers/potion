@@ -2,7 +2,7 @@
 
 const escapeText = require("../helpers/escape")
 
-module.exports = (source) => {
+module.exports = (source, options={ br: true }) => {
   const output = []
 
   source.forEach(clip => {
@@ -40,5 +40,5 @@ module.exports = (source) => {
 
   })
   
-  return output.join("").replace(/\n/g, "<br>")
+  return options.br ? output.join("").replace(/\n/g, "<br>") : output.join("")
 }
