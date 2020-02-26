@@ -1,10 +1,10 @@
 # Potion
 
-Potion is a reverse-engineered API for [Notion](https://notion.so). Write your content in Notion, and use Potion's simple hosted API endpoints to read your content. 
+Potion is a reverse-engineered API for [Notion](https://notion.so). Write your content in Notion, and use Potion's hosted API endpoints to read your content. 
 
 ## Endpoints
 
-All endpoints are relative to the base URL: `https://potion.benborgers.now.sh`
+All endpoints are relative to the base URL: `https://potion-api.now.sh`
 
 *`<notion-page-id>` refers to the 32 character alphanumeric string in the URL of a Notion doc (but not a query parameter, so not the string after `?v=`).*
 
