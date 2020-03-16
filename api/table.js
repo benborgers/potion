@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
   const collectionViewId = pageData.results[0].value.view_ids[0]
   
 
-  const tableData = await call("queryCollection",{
+  const tableData = await call("queryCollection", {
     collectionId,
     collectionViewId,
     loader: {
@@ -70,6 +70,18 @@ module.exports = async (req, res) => {
         value = page.value.properties[s][0][1][0][1]
       } else if(value && type === "text") {
         value = textArrayToHtml(page.value.properties[s])
+      } else if(type === "file") {
+        const files = page.value.properties[s].filter(f => f.length > 1)
+        // some items in the files array are for some reason just [","]
+
+        const outputFiles = []
+
+        files.forEach(file => {
+          const s3Url = file[1][0][1]
+          outputFiles.push(`https://www.notion.so/image/${encodeURIComponent(s3Url)}`)
+        })
+
+        value = outputFiles
       }
 
       fields[schemaDefinition.name] = value || undefined
