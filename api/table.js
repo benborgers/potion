@@ -70,7 +70,7 @@ module.exports = async (req, res) => {
         value = page.value.properties[s][0][1][0][1]
       } else if(value && type === "text") {
         value = textArrayToHtml(page.value.properties[s])
-      } else if(type === "file") {
+      } else if(value && type === "file") {
         const files = page.value.properties[s].filter(f => f.length > 1)
         // some items in the files array are for some reason just [","]
 
