@@ -5,6 +5,8 @@ const escapeText = require("../helpers/escape")
 module.exports = (source, options={ br: true }) => {
   const output = []
 
+  if(!source) return ""
+
   source.forEach(clip => {
     let text = escapeText(clip[0])
 

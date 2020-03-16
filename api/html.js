@@ -85,7 +85,7 @@ module.exports = async (req, res) => {
         "bulleted_list": "ul"
       }[type]
 
-      html.push(`<${el}><li>${textArrayToHtml(block.properties.title)}</li></${el}>`)
+      html.push(`<${el}><li>${textArrayToHtml(block.properties && block.properties.title)}</li></${el}>`)
     } else if(["to_do"].includes(type)) {
       /* To do list represented by a list of checkbox inputs */
       const checked = Boolean(block.properties.checked)
