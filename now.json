@@ -1,16 +1,5 @@
 {
   "redirects": [
     { "source": "/", "destination": "https://github.com/benborgers/potion" }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "cache-control",
-          "value": "s-maxage=1"
-        }
-      ]
-    }
   ]
 }
