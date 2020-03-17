@@ -2,13 +2,13 @@
 
 const escapeText = require("../helpers/escape")
 
-module.exports = (source, options={ br: true }) => {
+module.exports = (source, options={ br: true, escape: true }) => {
   const output = []
 
   if(!source) return ""
 
   source.forEach(clip => {
-    let text = escapeText(clip[0])
+    let text = options.escape ? escapeText(clip[0]) : clip[0]
 
     if(clip.length === 1) {
       output.push(text)

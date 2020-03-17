@@ -1,6 +1,14 @@
 /* Returns reconstructed HTML for a given Notion doc */
 
 const katex = require("katex")
+const prism = require("prismjs")
+require("prismjs/components/prism-markup-templating")
+require("prismjs/components/prism-php")
+require("prismjs/components/prism-python")
+require("prismjs/components/prism-ruby")
+require("prismjs/components/prism-json")
+require("prismjs/components/prism-java")
+require("prismjs/components/prism-yaml")
 
 const call = require("../notion/call")
 const normalizeId = require("../notion/normalizeId")
@@ -100,7 +108,13 @@ module.exports = async (req, res) => {
       if(showLive) {
         html.push(text.map(clip => clip[0]).join("")) // Ignore styling, just take the text
       } else {
-        html.push(`<pre><code class="language-${language}">${textArrayToHtml(text, { br: false })}</code></pre>`)
+        const code = textArrayToHtml(text, { br: false, escape: false })
+        let highlighted = code
+        try {
+          // try/catch because this fails when prism doesn't know the language
+          highlighted = prism.highlight(code, prism.languages[language], language)
+        } catch{}
+        html.push(`<pre><code class="language-${language}">${highlighted}</code></pre>`)
       }
     } else if(["callout"].includes(type)) {
       /* Callout formatted with emoji from emojicdn.elk.sh or just image */
