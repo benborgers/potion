@@ -9,6 +9,7 @@ require("prismjs/components/prism-ruby")
 require("prismjs/components/prism-json")
 require("prismjs/components/prism-java")
 require("prismjs/components/prism-yaml")
+require("prismjs/components/prism-bash")
 
 const call = require("../notion/call")
 const normalizeId = require("../notion/normalizeId")
