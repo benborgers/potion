@@ -2,8 +2,8 @@
 
 const call = require("../notion/call")
 const normalizeId = require("../notion/normalizeId")
-
 const textArrayToHtml = require("../notion/textArrayToHtml.js")
+const getAssetUrl = require("../notion/getAssetUrl")
 
 module.exports = async (req, res) => {
   const { id:queryId } = req.query
@@ -78,7 +78,7 @@ module.exports = async (req, res) => {
 
         files.forEach(file => {
           const s3Url = file[1][0][1]
-          outputFiles.push(`https://www.notion.so/image/${encodeURIComponent(s3Url)}`)
+          outputFiles.push(getAssetUrl(s3Url, page.value.id))
         })
 
         value = outputFiles
