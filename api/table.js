@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
     for(const s in schema) {
       const schemaDefinition = schema[s]
       const type = schemaDefinition.type
-      let value = page.value.properties[s] && page.value.properties[s][0][0]
+      let value = page.value.properties && page.value.properties[s] && page.value.properties[s][0][0]
 
       if(type === "checkbox") {
         value = value === "Yes" ? true : false
