@@ -98,7 +98,7 @@ module.exports = async (req, res) => {
     } else if(["to_do"].includes(type)) {
       /* To do list represented by a list of checkbox inputs */
       const checked = Boolean(block.properties.checked)
-      html.push(`<div class="checklist"><input type="checkbox" disabled${checked && " checked"}>${textArrayToHtml(block.properties.title)}</input></div>`)
+      html.push(`<div class="checklist"><label><input type="checkbox" disabled${checked && " checked"}>${textArrayToHtml(block.properties.title)}</label></div>`)
     } else if(["code"].includes(type)) {
       /* Full code blocks with language */
       const language = block.properties.language[0][0].toLowerCase().replace(/ /g, "")
