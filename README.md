@@ -8,17 +8,17 @@ All endpoints are relative to the base URL: `https://potion-api.now.sh`
 
 *`<notion-page-id>` refers to the 32 character alphanumeric string in the URL of a Notion doc (but not a query parameter, so not the string after `?v=`).*
 
-### /api/table
+### /table
 
 Lists all entries in a full-page Notion table, along with additional details about each page. 
 
 The only query parameter is `?id=<notion-page-id>`. 
 
-### /api/html
+### /html
 
 Generates HTML for a given Notion page. You can insert it as the contents of a blog post, for example. 
 
-The only query parameter is `?id=<notion-page-id>`, which can be obtained from the `/api/table` endpoint or just by copy-and-pasting from the URL
+The only query parameter is `?id=<notion-page-id>`, which can be obtained from the `/table` endpoint or just by copy-and-pasting from the URL
 
 ## Limitations
 
