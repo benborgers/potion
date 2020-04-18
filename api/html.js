@@ -140,6 +140,8 @@ module.exports = async (req, res) => {
       const equation = block.properties.title[0][0]
       const equationHtml = katex.renderToString(equation, { throwOnError: false })
       html.push(`<div class="equation">${equationHtml}</div>`)
+    } else if(["embed"].includes(type)) {
+      html.push(`<iframe src=${block.properties.source[0][0]}></iframe>`)
     } else {
       /* Catch blocks without handler method */
       console.log(`Unhandled block type "${block.type}"`, block)

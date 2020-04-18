@@ -37,6 +37,7 @@ Most, but not all, of the common Notion blocks are supported at the moment:
 - [ ] Link To Page
 - [x] Callout
 - [x] Image
+- [x] Embed
 - [ ] Web Bookmark
 - [ ] Video
 - [ ] Audio
