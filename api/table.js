@@ -67,7 +67,12 @@ module.exports = async (req, res) => {
       if(type === "checkbox") {
         value = value === "Yes" ? true : false
       } else if(value && type === "date") {
-        value = page.value.properties[s][0][1][0][1]
+        try {
+          value = page.value.properties[s][0][1][0][1]
+        } catch {
+          // it seems the older Notion date format is [[ string ]]
+          value = page.value.properties[s][0][0]
+        }
       } else if(value && type === "text") {
         value = textArrayToHtml(page.value.properties[s])
       } else if(value && type === "file") {
