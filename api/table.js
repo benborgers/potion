@@ -87,6 +87,8 @@ module.exports = async (req, res) => {
         })
 
         value = outputFiles
+      } else if(value && type === "multi_select") {
+        value = value.split(",")
       }
 
       fields[schemaDefinition.name] = value || undefined
