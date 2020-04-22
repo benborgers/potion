@@ -14,6 +14,12 @@ Lists all entries in a full-page Notion table, along with additional details abo
 
 The only query parameter is `?id=<notion-page-id>`. 
 
+### /table-description
+
+Generates HTML for the description of a table. 
+
+The only query parameter is `?id=<notion-page-id>`. 
+
 ### /html
 
 Generates HTML for a given Notion page. You can insert it as the contents of a blog post, for example. 
