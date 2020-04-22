@@ -30,9 +30,9 @@ module.exports = async (req, res) => {
     })
   }
 
-  if(pageData.results[0].value.type !== "collection_view_page") {
+  if(!pageData.results[0].value.type.startsWith("collection_view")) {
     return res.json({
-      error: "this Notion doc is not a full-page collection"
+      error: "this Notion doc is not a collection"
     })
   }
 
