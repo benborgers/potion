@@ -2,6 +2,14 @@
 
 Potion is a reverse-engineered API for [Notion](https://notion.so). Write your content in Notion, and use Potion's hosted API endpoints to read your content. 
 
+## Guides
+
+I've written a couple of blog posts on my website for using this API. 
+
+* [How to use Notion as your blog's CMS](https://benborgers.com/blog/notion-blog)
+* [API to read a Notion table](https://benborgers.com/blog/notion-table)
+* [How to turn a Notion doc into a website](https://benborgers.com/blog/notion-to-website)
+
 ## Endpoints
 
 All endpoints are relative to the base URL: `https://potion-api.now.sh`
