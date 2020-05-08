@@ -53,6 +53,6 @@ Most, but not all, of the common Notion blocks are supported at the moment:
 
 ## Development and Deployment
 
-This project is built to be deployed on [ZEIT Now](https://zeit.co/home). 
+This project is built to be deployed on [Vercel](https://vercel.com/home). 
 
-For local development, install [Now's CLI](https://zeit.co/download) and run `now dev`. 
+For local development, install [Vercel's CLI](https://vercel.com/download) and run `now dev`. 
