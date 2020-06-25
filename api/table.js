@@ -8,6 +8,7 @@ const getAssetUrl = require("../notion/getAssetUrl")
 module.exports = async (req, res) => {
   const { id:queryId } = req.query
   const id = normalizeId(queryId)
+  const format = req.query.format ? req.query.format.toLowerCase() : 'json'
 
   if(!id) {
     return res.json({
@@ -51,6 +52,12 @@ module.exports = async (req, res) => {
   const subPages = tableData.result.blockIds
 
   const schema = tableData.recordMap.collection[collectionId].value.schema
+console.log(pageData.results[0].value);
+  var feed
+  if(format == 'rss') {
+    var RSS = require('rss');
+    feed = new RSS();
+  }
 
   const output = []
 
@@ -101,8 +108,19 @@ module.exports = async (req, res) => {
       created: page.value.created_time,
       last_edited: page.value.last_edited_time
     })
+    if(format == 'rss') {
+      feed.item({
+        title:  fields.Name,
+        url: fields.URL, 
+        guid: page.value.id, // optional - defaults to url
+        date: page.value.last_edited_time
+      });
+    }
   })
 
-
-  return res.json(output)
+  if(format == 'rss') {
+    return res.send(feed.xml())
+  } else {
+    return res.json(output)
+  }
 }
