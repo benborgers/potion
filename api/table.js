@@ -112,7 +112,7 @@ console.log(pageData.results[0].value);
       feed.item({
         title:  fields.Name,
         url: fields.URL, 
-        guid: page.value.id, // optional - defaults to url
+        guid: page.value.id,
         date: page.value.last_edited_time
       });
     }
