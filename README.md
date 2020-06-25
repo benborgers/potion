@@ -20,7 +20,9 @@ All endpoints are relative to the base URL: `https://potion-api.now.sh`
 
 Lists all entries in a full-page Notion table, along with additional details about each page. 
 
-The only query parameter is `?id=<notion-page-id>`. 
+Choose the table with the query parameter `?id=<notion-page-id>`. 
+
+Default output format is JSON. Change this to RSS with the query parameter `format=rss`. For RSS output to work, the table entries must have properties named `URL` and `Name` (the default fields that the Notion Clipper creates).
 
 ### /table-description
 
@@ -63,4 +65,4 @@ Most, but not all, of the common Notion blocks are supported at the moment:
 
 This project is built to be deployed on [Vercel](https://vercel.com/home). 
 
-For local development, install [Vercel's CLI](https://vercel.com/download) and run `now dev`. 
+For local development, install [Vercel's CLI](https://vercel.com/download) and run `vercel dev`. 
