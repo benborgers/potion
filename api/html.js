@@ -142,6 +142,8 @@ module.exports = async (req, res) => {
       html.push(`<div class="equation">${equationHtml}</div>`)
     } else if(["embed"].includes(type)) {
       html.push(`<iframe src=${block.properties.source[0][0]}></iframe>`)
+    } else if(["video"].includes(type)) {
+      html.push(`<iframe src=${block.format.display_source}></iframe>`)
     } else {
       /* Catch blocks without handler method */
       console.log(`Unhandled block type "${block.type}"`, block)
