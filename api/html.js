@@ -67,8 +67,6 @@ module.exports = async (req, res) => {
 
   const html = []
 
-  let pageHasEquations = false
-
   contents.forEach(block => {
     const type = block.type
 
@@ -136,7 +134,6 @@ module.exports = async (req, res) => {
         // Equation block is empty
         return 
       }
-      pageHasEquations = true
       const equation = block.properties.title[0][0]
       const equationHtml = katex.renderToString(equation, { throwOnError: false })
       html.push(`<div class="equation">${equationHtml}</div>`)
@@ -150,7 +147,8 @@ module.exports = async (req, res) => {
     }
   })
 
-  if(pageHasEquations) {
+  // Only add Katex stylesheet if there's Katex elements. 
+  if(html.join("").includes(`class="katex"`)) {
     html.push(`<link rel="stylesheet" href="https://unpkg.com/katex@0.11.1/dist/katex.min.css">`)
   }
 

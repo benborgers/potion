@@ -70,7 +70,7 @@ Most, but not all, of the common Notion blocks are supported at the moment:
 - [ ] Toggle List
 - [x] Quote
 - [x] Divider
-- [ ] Link To Page
+- [ ] Link to Page
 - [x] Callout
 - [x] Image
 - [x] Embed
@@ -80,6 +80,7 @@ Most, but not all, of the common Notion blocks are supported at the moment:
 - [x] Code
 - [ ] File
 - [x] Math Equation
+- [x] Inline Equation
 
 ## Development and Deployment
 
