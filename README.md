@@ -34,7 +34,27 @@ The only query parameter is `?id=<notion-page-id>`.
 
 Generates HTML for a given Notion page. You can insert it as the contents of a blog post, for example. 
 
-The only query parameter is `?id=<notion-page-id>`, which can be obtained from the `/table` endpoint or just by copy-and-pasting from the URL
+The only query parameter is `?id=<notion-page-id>`, which can be obtained from the `/table` endpoint or just by copy-and-pasting from the URL. 
+
+## Syntax Highlighting
+
+Potion gives you syntax highlighting of Notion code blocks for free, when using the `/html` endpoint! 
+
+### How to use syntax highlighting
+
+You'll notice that the code block HTML that Potion returns is given CSS classes that make it compatible with [Prism.js](https://prismjs.com/). 
+
+1. Pick a theme you like from [this README](https://github.com/PrismJS/prism-themes/blob/master/README.md). 
+2. Select the CSS file for that theme [from this list](https://unpkg.com/browse/prism-themes@latest/themes/) and click **View Raw**. 
+3. Include that stylesheet in the `head` of your HTML page to activate syntax highlighting. For example: 
+  ```html
+  <link rel="stylesheet" href="https://unpkg.com/prism-themes@1.4.0/themes/prism-ghcolors.css" />
+  ```
+
+### Language support
+
+Potion supports syntax highlighting for most popular languages, and you can open an issue if you'd like to see a language supported that isn't currently. 
+
 
 ## Limitations
 
