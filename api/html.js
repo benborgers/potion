@@ -118,7 +118,7 @@ module.exports = async (req, res) => {
     } else if(["callout"].includes(type)) {
       /* Callout formatted with emoji from emojicdn.elk.sh or just image */
       const icon = block.format.page_icon
-      const imageLink = icon.startsWith("http") ? `https://www.notion.so/image/${encodeURIComponent(icon)}` : `https://emojicdn.elk.sh/${icon}`
+      const imageLink = icon.startsWith("http") ? `https://www.notion.so/image/${encodeURIComponent(icon)}?table=block&id=${block.id}` : `https://emojicdn.elk.sh/${icon}`
       const color = block.format.block_color.split("_")[0]
       const isBackground = block.format.block_color.split("_").length > 1
       const text = block.properties.title
