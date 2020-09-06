@@ -5,6 +5,6 @@
   "dependencies": {
     "katex": "^0.11.1",
     "node-fetch": "^2.6.0",
-    "prismjs": "^1.19.0"
+    "prismjs": "^1.21.0"
   }
 }
