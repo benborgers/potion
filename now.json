@@ -12,6 +12,10 @@
         {
           "key": "access-control-allow-origin",
           "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=5"
         }
       ]
     }
