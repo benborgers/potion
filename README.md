@@ -16,6 +16,8 @@ I've written a couple of blog posts on my website for using this API.
 
 All endpoints are relative to the base URL: `https://potion-api.now.sh`
 
+Responses are cached for 10 seconds, so it'll take up to 10 seconds for changes made in Notion to show up. 
+
 *`<notion-page-id>` refers to the 32 character alphanumeric string in the URL of a Notion doc (but not a query parameter, so not the string after `?v=`).*
 
 ### /table
