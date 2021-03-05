@@ -3,7 +3,7 @@
   "author": "Ben Borgers <borgersbenjamin@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "katex": "^0.11.1",
+    "katex": "^0.12.0",
     "node-fetch": "^2.6.1",
     "prismjs": "^1.23.0"
   }
