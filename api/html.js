@@ -49,19 +49,30 @@ module.exports = async (req, res) => {
   }
 
   const contents = []
+  let recordMap = {}
+  let lastChunk
+  let hasMorePageChunks = true
 
-  const chunk = await call("loadPageChunk", {
-    pageId: id,
-    limit: 999999,
-    cursor: {
-      stack: []
-    },
-    chunkNumber: 0,
-    verticalColumns: false
-  })
+  while(hasMorePageChunks) {
+    const cursor = lastChunk?.cursor || ({ stack: [] })
+
+    const chunk = await call("loadPageChunk", {
+        pageId: id,
+        limit: 100,
+        cursor,
+        chunkNumber: 0,
+        verticalColumns: false
+    })
+
+    recordMap = { ...recordMap, ...chunk.recordMap.block }
+
+    lastChunk = chunk
+
+    if(chunk.cursor.stack.length === 0) hasMorePageChunks = false
+  }
 
   contentIds.forEach(id => {
-    const block = chunk.recordMap.block[id]
+    const block = recordMap[id]
     if(block) contents.push(block.value)
   })
 
@@ -80,7 +91,7 @@ module.exports = async (req, res) => {
       }[type]
 
       if(!block.properties) {
-        // This is an empty text block. 
+        // This is an empty text block.
         return
       }
 
@@ -132,7 +143,7 @@ module.exports = async (req, res) => {
     } else if(["equation"].includes(type)) {
       if(!block.properties) {
         // Equation block is empty
-        return 
+        return
       }
       const equation = block.properties.title[0][0]
       const equationHtml = katex.renderToString(equation, { throwOnError: false })
@@ -147,7 +158,7 @@ module.exports = async (req, res) => {
     }
   })
 
-  // Only add Katex stylesheet if there's Katex elements. 
+  // Only add Katex stylesheet if there's Katex elements.
   if(html.join("").includes(`class="katex"`)) {
     html.push(`<link rel="stylesheet" href="https://unpkg.com/katex@0.11.1/dist/katex.min.css">`)
   }
