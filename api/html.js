@@ -54,7 +54,7 @@ module.exports = async (req, res) => {
   let hasMorePageChunks = true
 
   while(hasMorePageChunks) {
-    const cursor = lastChunk?.cursor || ({ stack: [] })
+    const cursor = lastChunk && lastChunk.cursor || ({ stack: [] })
 
     const chunk = await call("loadPageChunk", {
         pageId: id,
