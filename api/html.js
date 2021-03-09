@@ -25,11 +25,12 @@ module.exports = async (req, res) => {
     })
   }
 
-  const overview = await call("synRecordValues", {
+  const overview = await call("syncRecordValues", {
     requests: [
       {
         id,
-        table: "block"
+        table: "block",
+        version: -1
       }
     ]
   })
