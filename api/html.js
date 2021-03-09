@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
     })
   }
 
-  const overview = await call("getRecordValues", {
+  const overview = await call("synRecordValues", {
     requests: [
       {
         id,
@@ -34,13 +34,13 @@ module.exports = async (req, res) => {
     ]
   })
 
-  if(!overview.results[0].value) {
+  if(!overview.recordMap.block[id].value) {
     return res.json({
       error: "could not read Notion doc with this ID - make sure public access is enabled"
     })
   }
 
-  const contentIds = overview.results[0].value.content
+  const contentIds = overview.recordMap.block[id].value.content
 
   if(!contentIds) {
     return res.json({
