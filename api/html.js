@@ -161,7 +161,7 @@ module.exports = async (req, res) => {
 
   // Only add Katex stylesheet if there's Katex elements.
   if(html.join("").includes(`class="katex"`)) {
-    html.push(`<link rel="stylesheet" href="https://unpkg.com/katex@0.11.1/dist/katex.min.css">`)
+    html.push(`<link rel="stylesheet" href="https://unpkg.com/katex@0.12.0/dist/katex.min.css">`)
   }
 
   const joinedHtml = html.join("")
