@@ -14,29 +14,32 @@ module.exports = async (req, res) => {
     })
   }
 
-  const pageData = await call("getRecordValues", {
+  const pageData = await call("syncRecordValues", {
     requests: [
       {
         id: id,
-        table: "block"
+        table: "block",
+        version: -1
       }
     ]
-  })
+  });
 
-  if(!pageData.results[0].value) {
+  const collectionBlock = pageData.recordMap.block[id].value;
+
+  if(!collectionBlock) {
     return res.json({
       error: "invalid Notion doc ID, or public access is not enabled on this doc"
     })
   }
 
-  if(!pageData.results[0].value.type.startsWith("collection_view")) {
+  if(!collectionBlock.type.startsWith("collection_view")) {
     return res.json({
       error: "this Notion doc is not a collection"
     })
   }
 
-  const collectionId = pageData.results[0].value.collection_id
-  const collectionViewId = pageData.results[0].value.view_ids[0]
+  const collectionId = collectionBlock.collection_id
+  const collectionViewId = collectionBlock.view_ids[0]
 
   const tableData = await call("queryCollection", {
     collectionId,
@@ -44,9 +47,9 @@ module.exports = async (req, res) => {
     loader: {
       type: "table"
     }
-  })
+  });
 
-  const descriptionArray = tableData.recordMap.collection[collectionId].value.description
+  const descriptionArray = tableData.recordMap.collection[collectionId].value.description;
 
   res.send(textArrayToHtml(descriptionArray))
 }
