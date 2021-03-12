@@ -15,13 +15,21 @@ module.exports = async (req, res) => {
   }
 
   const {recordMap} = await call("loadPageChunk", {
-    requests: [
-      {
-        id: id,
-        table: "block",
-        version: -1
-      }
-    ]
+    pageId: id,
+    limit: 100,
+    cursor: {
+      stack: [
+        [
+          {
+            table: "block",
+            id: id, 
+            index: 0
+          }
+        ]
+      ]
+    },
+    chunkNumber: 0,
+    verticalColumns: false
   });
 
   const collectionBlock = recordMap.block[id].value;
