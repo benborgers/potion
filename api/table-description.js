@@ -14,17 +14,25 @@ module.exports = async (req, res) => {
     })
   }
 
-  const pageData = await call("syncRecordValues", {
-    requests: [
-      {
-        id: id,
-        table: "block",
-        version: -1
-      }
-    ]
+  const {recordMap} = await call("loadPageChunk", {
+    pageId: id,
+    limit: 100,
+    cursor: {
+      stack: [
+        [
+          {
+            table: "block",
+            id: id, 
+            index: 0
+          }
+        ]
+      ]
+    },
+    chunkNumber: 0,
+    verticalColumns: false
   });
 
-  const collectionBlock = pageData.recordMap.block[id].value;
+  const collectionBlock = recordMap.block[id].value;
 
   if(!collectionBlock) {
     return res.json({
@@ -38,18 +46,7 @@ module.exports = async (req, res) => {
     })
   }
 
-  const collectionId = collectionBlock.collection_id
-  const collectionViewId = collectionBlock.view_ids[0]
-
-  const tableData = await call("queryCollection", {
-    collectionId,
-    collectionViewId,
-    loader: {
-      type: "table"
-    }
-  });
-
-  const descriptionArray = tableData.recordMap.collection[collectionId].value.description;
+  const descriptionArray = recordMap.collection[collectionBlock.collection_id].value.description;
 
   res.send(textArrayToHtml(descriptionArray))
 }
