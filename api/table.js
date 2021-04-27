@@ -38,13 +38,17 @@ module.exports = async (req, res) => {
 
   const collectionId = pageData.results[0].value.collection_id
   const collectionViewId = pageData.results[0].value.view_ids[0]
-  
+
 
   const tableData = await call("queryCollection", {
     collectionId,
     collectionViewId,
+    query: {},
     loader: {
-      type: "table"
+      type: 'table',
+      limit: 99999,
+      userTimeZone: 'UTC',
+      loadContentCover: true
     }
   })
 
@@ -95,7 +99,7 @@ module.exports = async (req, res) => {
     }
 
     output.push({
-      fields, 
+      fields,
       id: page.value.id,
       emoji: page.value.format && page.value.format.page_icon,
       created: page.value.created_time,
