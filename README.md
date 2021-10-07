@@ -6,6 +6,8 @@ If you have any questions about using Potion in your project, I'd love to help. 
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fbenborgers%2Fpotion)
 
+**I no longer maintain Potion, since the [official Notion API](https://developers.notion.com) has been released and is more stable than Notion’s internal API, which Potion relies on.**
+
 ## Guides
 
 I've written a couple of blog posts on my website for using this API.
