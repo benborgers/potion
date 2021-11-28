@@ -6,7 +6,7 @@ const textArrayToHtml = require("../notion/textArrayToHtml.js")
 const getAssetUrl = require("../notion/getAssetUrl")
 
 module.exports = async (req, res) => {
-  res.send("This API has been deprecated. Please use the official Notion API (developers.notion.com) instead.")
+  return res.send("This API has been deprecated. Please use the official Notion API (developers.notion.com) instead.")
   
   const { id:queryId } = req.query
   const id = normalizeId(queryId)
