@@ -2,10 +2,6 @@
 
 Potion is a reverse-engineered API for [Notion](https://notion.so). Write your content in Notion, and use Potion's hosted API endpoints to read your content.
 
-If you have any questions about using Potion in your project, I'd love to help. Send me an email: benborgers@hey.com
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fbenborgers%2Fpotion)
-
 **I no longer maintain Potion, since the [official Notion API](https://developers.notion.com) has been released and is more stable than Notion’s internal API, which Potion relies on.**
 
 ## Guides
